@@ -10,7 +10,7 @@ spec:
   project: platform
   source:
     path: platform/argocd
-    repoURL: 
+    repoURL: https://github.com/yahya-alshamrani/gitops
     targetRevision: main
   syncPolicy:
     automated:
