@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kgateway
+  namespace: argocd
+spec:
+  destination:
+    namespace: kgateway-system
+    server: https://kubernetes.default.svc
+  project: platform
+  source:
+    path: platform/kgateway
+    repoURL: https://github.com/yahya-alshamrani/gitops
+    targetRevision: main
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true

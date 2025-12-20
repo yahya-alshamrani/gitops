@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+- kgateway-app.yaml
 - argocd-app.yaml
 - sealed-secrets-app.yaml
 - cnpg-app.yaml

@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources: 
+- gateway-api-crds-install.yaml
+- namespace.yaml
+- default-gateway.yaml
+
+helmCharts:
+  - name: kgateway-crds
+    repo: oci://cr.kgateway.dev/kgateway-dev/charts
+    version: v2.1.1
+    releaseName: kgateway-crds
+    namespace: kgateway-system
+  - name: kgateway
+    repo: oci://cr.kgateway.dev/kgateway-dev/charts
+    version: v2.1.1
+    releaseName: kgateway
+    namespace: kgateway-system
+    valuesFile: values.yaml
+
+namespace: kgateway-system
