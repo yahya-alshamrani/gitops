@@ -5,3 +5,4 @@ resources:
 - argocd-app.yaml
 - sealed-secrets-app.yaml
 - cnpg-app.yaml
+- crossplane-app.yaml
