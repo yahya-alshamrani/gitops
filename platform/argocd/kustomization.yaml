@@ -5,6 +5,7 @@ resources:
 - namespace.yaml
 - install.yaml
 - projects.yaml
+- httproute.yaml
 - image-updater
 
 patches:
