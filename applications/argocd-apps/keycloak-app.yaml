@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: applications
   source:
-    path: applications/argocd
+    path: applications/keycloak
     repoURL: https://github.com/yahya-alshamrani/gitops
     targetRevision: main
   syncPolicy:
