@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdns-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pdns
+  template:
+    metadata:
+      labels:
+        app: pdns
+    spec:
+      containers:
+      - name: pdns
+        image: powerdns/pdns-auth-50:5.0.2
+        env:
+        - name: PDNS_LAUNCH
+          value: "gpgsql"
+        - name: PDNS_GPGSQL_HOST
+          value: "pdns-db-rw" # CNPG Read-Write service
+        - name: PDNS_GPGSQL_DBNAME
+          value: "pdns"
+        - name: PDNS_GPGSQL_USER
+          value: "pdns-user"
+        - name: PDNS_GPGSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pdns-db-app
+              key: password
+        - name: PDNS_GPGSQL_SSLMODE
+          value: "disable"
+        ports:
+        - containerPort: 53
+          name: dns-udp
+          protocol: UDP
+        - containerPort: 53
+          name: dns-tcp
+          protocol: TCP
+        - containerPort: 8081
+          name: api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pdns-service
+spec:
+  selector:
+    app: pdns
+  ports:
+    - name: dns-udp
+      port: 5353
+      protocol: UDP
+      targetPort: 53
+    - name: dns-tcp
+      port: 5353
+      protocol: TCP
+      targetPort: 53
+    - name: api
+      port: 8081
+      targetPort: 8081
+  type: ClusterIP
