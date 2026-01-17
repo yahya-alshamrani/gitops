@@ -31,6 +31,12 @@ spec:
       - name: pdns
         image: powerdns/pdns-auth-50:5.0.2
         env:
+        - name: PDNS_API
+          value: "yes"
+        - name: PDNS_WEBSERVER
+          value: "yes"
+        - name: PDNS_WEBSERVER_ALLOW_FROM
+          value: "0.0.0.0/0"
         - name: PDNS_LAUNCH
           value: "gpgsql"
         - name: PDNS_API_KEY
@@ -60,10 +66,10 @@ spec:
               key: password
         - name: PDNS_GPGSQL_SSLMODE
           value: "disable"
-        volumeMounts:
-        - name: config-volume
-          mountPath: /etc/powerdns/pdns.d/local.conf
-          subPath: local.conf
+        # volumeMounts:
+        # - name: config-volume
+        #   mountPath: /etc/powerdns/pdns.d/local.conf
+        #   subPath: local.conf
         resources:
           requests:
             cpu: "100m"
@@ -92,10 +98,10 @@ spec:
           protocol: TCP
         - containerPort: 8081
           name: api
-      volumes:
-      - name: config-volume
-        configMap:
-          name: pdns-local-config
+      # volumes:
+      # - name: config-volume
+      #   configMap:
+      #     name: pdns-local-config
 ---
 apiVersion: v1
 kind: Service
