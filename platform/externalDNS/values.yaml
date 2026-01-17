@@ -326,7 +326,6 @@ extraArgs:  # @schema type: [array, null, object]; item: string; uniqueItems: tr
   - --pdns-api-key=$(EXTERNAL_DNS_PDNS_API_KEY)
   - --pdns-server-id=$(EXTERNAL_DNS_PDNS_SERVER_ID)
   - --txt-owner-id=$(EXTERNAL_DNS_TXT_OWNER_ID)
-  - --pdns-tls-enabled=false
 
 secretConfiguration:
   # -- If `true`, create a `Secret` to store sensitive provider configuration (**DEPRECATED**).
