@@ -12,7 +12,6 @@ spec:
     size: 10Gi
   postgresql:
     parameters:
-      ssl: "off"
       password_encryption: 'scram-sha-256'
     pg_hba:
       - host sso sso-user all scram-sha-256
