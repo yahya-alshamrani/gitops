@@ -1,3 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pdns-local-config
+data:
+  local.conf: |
+    # Enable the webserver for health checks
+    webserver=yes
+    webserver-address=0.0.0.0
+    webserver-port=8081
+    webserver-allow-from=0.0.0.0/0
+    
+    # Enable the API (required if you want to manage records via HTTP)
+    api=yes
+    api-key=Ofu7wxZd/T3TtEq2Rli1lw0pHyRWQxD5IntgWCqAKuU
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,6 +56,10 @@ spec:
               key: password
         - name: PDNS_GPGSQL_SSLMODE
           value: "disable"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/powerdns/pdns.d/local.conf
+          subPath: local.conf
         resources:
           requests:
             cpu: "100m"
@@ -47,18 +67,18 @@ spec:
           limits:
             cpu: "500m"
             memory: "256Mi"
-        # livenessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: api
-        #   initialDelaySeconds: 15
-        #   periodSeconds: 20
-        # readinessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: api
-        #   initialDelaySeconds: 60
-        #   periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: api
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /
+            port: api
+          initialDelaySeconds: 5
+          periodSeconds: 10
         ports:
         - containerPort: 53
           name: dns-udp
@@ -68,6 +88,10 @@ spec:
           protocol: TCP
         - containerPort: 8081
           name: api
+    volumes:
+      - name: config-volume
+        configMap:
+          name: pdns-local-config
 ---
 apiVersion: v1
 kind: Service
