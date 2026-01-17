@@ -8,7 +8,7 @@ spec:
     initdb:
       database: pdns
       owner: pdns-user
-      postInitSQL: |
+      postInitSQL:
         - |
           CREATE TABLE domains (
             id                    SERIAL PRIMARY KEY,
