@@ -19,11 +19,20 @@ spec:
         - name: PDNS_LAUNCH
           value: "gpgsql"
         - name: PDNS_GPGSQL_HOST
-          value: "pdns-db-rw" # CNPG Read-Write service
+          valueFrom:
+            secretKeyRef:
+              name: pdns-database-app
+              key: host
         - name: PDNS_GPGSQL_DBNAME
-          value: "pdns"
+          valueFrom:
+            secretKeyRef:
+              name: pdns-database-app
+              key: dbname
         - name: PDNS_GPGSQL_USER
-          value: "pdns-user"
+          valueFrom:
+            secretKeyRef:
+              name: pdns-database-app
+              key: username
         - name: PDNS_GPGSQL_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -31,6 +40,25 @@ spec:
               key: password
         - name: PDNS_GPGSQL_SSLMODE
           value: "disable"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: api
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /
+            port: api
+          initialDelaySeconds: 5
+          periodSeconds: 10
         ports:
         - containerPort: 53
           name: dns-udp
