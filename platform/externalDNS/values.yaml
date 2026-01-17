@@ -191,7 +191,7 @@ serviceMonitor:
   targetLabels: []
 
 # -- Log level.
-logLevel: info  # @schema enum:[panic, debug, info, warning, error, fatal]; type:string; default: "info"
+logLevel: debug  # @schema enum:[panic, debug, info, warning, error, fatal]; type:string; default: "info"
 
 # -- Log format.
 logFormat: text  # @schema enum:["text", "json"]; type:string; default: "text"
@@ -321,8 +321,7 @@ provider:  # @schema type: [object, string]
 
 # -- Extra arguments to provide to _ExternalDNS_.
 # An array or map can be used, with maps allowing for value overrides; maps also support slice values to use the same arg multiple times.
-extraArgs:  # @schema type: [array, null, object]; item: string; uniqueItems: true
-  - --log-level=debug
+extraArgs: [] # @schema type: [array, null, object]; item: string; uniqueItems: true
 
 secretConfiguration:
   # -- If `true`, create a `Secret` to store sensitive provider configuration (**DEPRECATED**).
