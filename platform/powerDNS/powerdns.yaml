@@ -27,7 +27,7 @@ spec:
         - name: PDNS_GPGSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: pdns-db-app
+              name: pdns-database-app
               key: password
         - name: PDNS_GPGSQL_SSLMODE
           value: "disable"
