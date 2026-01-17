@@ -80,18 +80,23 @@ spec:
             # Instruct JGroups which DNS hostname to use to discover other Keycloak nodes
             # Needs to be unique for each Keycloak cluster
             - name: KC_CACHE_EMBEDDED_NETWORK_BIND_ADDRESS
-              value: '$(POD_IP)'
-            - name: 'KC_DB_URL_DATABASE'
-              value: 'keycloak'
-            - name: 'KC_DB_URL_HOST'
-              value: 'postgres'
-            - name: 'KC_DB'
-              value: 'postgres'
+              value: '$(POD_IP)'.
+            - name: 'KC_DB_URL'
+              valueFrom:
+                secretKeyRef:
+                  name: sso-database-app
+                  key: fqdn-jdbc-uri
+            # - name: 'KC_DB_URL_DATABASE'
+            #   value: 'keycloak'
+            # - name: 'KC_DB_URL_HOST'
+            #   value: 'postgres'
+            # - name: 'KC_DB'
+            #   value: 'postgres'
             # In a production environment, use a secret to store username and password to the database
-            - name: 'KC_DB_PASSWORD'
-              value: 'keycloak'
-            - name: 'KC_DB_USERNAME'
-              value: 'keycloak'
+            # - name: 'KC_DB_PASSWORD'
+            #   value: 'keycloak'
+            # - name: 'KC_DB_USERNAME'
+            #   value: 'keycloak'
           ports:
             - name: http
               containerPort: 8080
