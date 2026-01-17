@@ -122,6 +122,8 @@ env:
     value: "http://pdns-service.powerdns-system.svc.cluster.local:8081"
   - name: EXTERNAL_DNS_PDNS_SERVER_ID
     value: "localhost"
+  - name: EXTERNAL_DNS_PDNS_TLS_ENABLED
+    value: "false"
   - name: EXTERNAL_DNS_PDNS_API_KEY
     valueFrom:
       secretKeyRef:
