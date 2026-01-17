@@ -321,7 +321,12 @@ provider:  # @schema type: [object, string]
 
 # -- Extra arguments to provide to _ExternalDNS_.
 # An array or map can be used, with maps allowing for value overrides; maps also support slice values to use the same arg multiple times.
-extraArgs: {}  # @schema type: [array, null, object]; item: string; uniqueItems: true
+extraArgs:  # @schema type: [array, null, object]; item: string; uniqueItems: true
+  - --pdns-server=$(EXTERNAL_DNS_PDNS_SERVER)
+  - --pdns-api-key=$(EXTERNAL_DNS_PDNS_API_KEY)
+  - --pdns-server-id=$(EXTERNAL_DNS_PDNS_SERVER_ID)
+  - --txt-owner-id=$(EXTERNAL_DNS_TXT_OWNER_ID)
+  - --pdns-tls-enabled=false
 
 secretConfiguration:
   # -- If `true`, create a `Secret` to store sensitive provider configuration (**DEPRECATED**).
