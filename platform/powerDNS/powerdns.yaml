@@ -81,18 +81,18 @@ spec:
           limits:
             cpu: "500m"
             memory: "256Mi"
-        # livenessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: api
-        #   initialDelaySeconds: 15
-        #   periodSeconds: 20
-        # readinessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: api
-        #   initialDelaySeconds: 5
-        #   periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: api
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /
+            port: api
+          initialDelaySeconds: 5
+          periodSeconds: 10
         ports:
         - containerPort: 53
           name: dns-udp
