@@ -12,7 +12,6 @@ data:
     
     # Enable the API (required if you want to manage records via HTTP)
     api=yes
-    api-key=Ofu7wxZd/T3TtEq2Rli1lw0pHyRWQxD5IntgWCqAKuU
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,6 +33,11 @@ spec:
         env:
         - name: PDNS_LAUNCH
           value: "gpgsql"
+        - name: PDNS_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pdns-api-key
+              key: api-key
         - name: PDNS_GPGSQL_HOST
           valueFrom:
             secretKeyRef:
