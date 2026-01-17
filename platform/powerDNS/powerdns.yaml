@@ -57,7 +57,7 @@ spec:
           httpGet:
             path: /
             port: api
-          initialDelaySeconds: 5
+          initialDelaySeconds: 60
           periodSeconds: 10
         ports:
         - containerPort: 53
