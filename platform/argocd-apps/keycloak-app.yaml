@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: applications
   source:
-    path: applications/keycloak
+    path: platform/keycloak
     repoURL: https://github.com/yahya-alshamrani/gitops
     targetRevision: main
   syncPolicy:
