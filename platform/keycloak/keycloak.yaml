@@ -86,13 +86,11 @@ spec:
                 secretKeyRef:
                   name: sso-database-app
                   key: dbname
-            - name: 'KC_DB_URL_HOSTNAME'
+            - name: 'KC_DB_URL_HOST'
               valueFrom:
                 secretKeyRef:
                   name: sso-database-app
                   key: host
-            - name: 'KC_DB_URL_HOST'
-              value: '$(KC_DB_URL_HOSTNAME).keycloak-system.svc.cluster.local'
             - name: 'KC_DB'
               value: "postgres"
             # In a production environment, use a secret to store username and password to the database
