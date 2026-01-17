@@ -118,11 +118,11 @@ securityContext:
 
 # -- [Environment variables](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/) for the `external-dns` container.
 env:
-  - name: PDNS_SERVER
+  - name: EXTERNAL_DNS_PDNS_SERVER
     value: "http://pdns-service.powerdns-system.svc.cluster.local:8081"
-  - name: PDNS_SERVER_ID
+  - name: EXTERNAL_DNS_PDNS_SERVER_ID
     value: "localhost"
-  - name: PDNS_API_KEY
+  - name: EXTERNAL_DNS_PDNS_API_KEY
     valueFrom:
       secretKeyRef:
         name: pdns-api-key
