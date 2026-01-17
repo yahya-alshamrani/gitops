@@ -11,5 +11,6 @@ helmCharts:
     releaseName: external-dns
     namespace: externaldns-system
     valuesFile: values.yaml
+    includeCRDs: true
 
 namespace: externaldns-system
