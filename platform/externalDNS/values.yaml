@@ -265,7 +265,7 @@ provider:  # @schema type: [object, string]
       - name: EXTERNAL_DNS_PDNS_SERVER
         value: "http://pdns-service.powerdns-system.svc.cluster.local:8081"
       - name: EXTERNAL_DNS_PDNS_SERVER_ID
-        value: "localhost"
+        value: "HIHIHIHIHIHI"
       - name: EXTERNAL_DNS_TXT_OWNER_ID
         value: "external-dns"
       - name: EXTERNAL_DNS_PDNS_API_KEY
