@@ -35,6 +35,8 @@ spec:
           value: "yes"
         - name: PDNS_WEBSERVER
           value: "yes"
+        - name: PDNS_WEBSERVER_PORT
+          value: "8081"
         - name: PDNS_WEBSERVER_ALLOW_FROM
           value: "0.0.0.0/0"
         - name: PDNS_LAUNCH
