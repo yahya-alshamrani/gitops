@@ -81,28 +81,31 @@ spec:
             # Needs to be unique for each Keycloak cluster
             - name: KC_CACHE_EMBEDDED_NETWORK_BIND_ADDRESS
               value: '$(POD_IP)'
-            - name: 'KC_DB_URL'
+            # - name: 'KC_DB_URL_DATABASE'
+            #   value: 'keycloak'
+            - name: 'KC_DB_URL_HOSTNAME'
               valueFrom:
                 secretKeyRef:
                   name: sso-database-app
-                  key: fqdn-uri
-            # - name: 'KC_DB_URL_DATABASE'
-            #   value: 'keycloak'
-            # - name: 'KC_DB_URL_HOST'
-            #   value: 'postgres'
-            # - name: 'KC_DB'
-            #   value: 'postgres'
+                  key: host
+            - name: 'KC_DB_URL_HOST'
+              value: '$(KC_DB_URL_HOSTNAME).keycloak-system.svc.cluster.local'
+            - name: 'KC_DB'
+              valueFrom:
+                secretKeyRef:
+                  name: sso-database-app
+                  key: dbname
             # In a production environment, use a secret to store username and password to the database
-            # - name: 'KC_DB_PASSWORD'
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: sso-database-app
-            #       key: password
-            # - name: 'KC_DB_USERNAME'
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: sso-database-app
-            #       key: username
+            - name: 'KC_DB_PASSWORD'
+              valueFrom:
+                secretKeyRef:
+                  name: sso-database-app
+                  key: password
+            - name: 'KC_DB_USERNAME'
+              valueFrom:
+                secretKeyRef:
+                  name: sso-database-app
+                  key: username
           ports:
             - name: http
               containerPort: 8080
