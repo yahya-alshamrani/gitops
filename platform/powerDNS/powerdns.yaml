@@ -102,11 +102,11 @@ spec:
     app: pdns
   ports:
     - name: dns-udp
-      port: 5353
+      port: 53
       protocol: UDP
       targetPort: 53
     - name: dns-tcp
-      port: 5353
+      port: 53
       protocol: TCP
       targetPort: 53
     - name: api
