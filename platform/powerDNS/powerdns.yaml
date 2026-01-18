@@ -41,7 +41,7 @@ spec:
           value: "8081"
         - name: PDNS_WEBSERVER_ALLOW_FROM
           value: "0.0.0.0/0"
-        - name: PDNS_LAUNCH
+        - name: launch
           value: "gpgsql"
         - name: PDNS_AUTH_API_KEY
           valueFrom:
