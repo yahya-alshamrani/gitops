@@ -30,8 +30,6 @@ spec:
       containers:
       - name: pdns
         image: powerdns/pdns-auth-50:5.0.2
-        args:
-        - --launch=$(PDNS_LAUNCH)
         env:
         - name: PDNS_API
           value: "yes"
