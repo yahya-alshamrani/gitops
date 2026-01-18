@@ -21,6 +21,8 @@ spec:
         ports:
         - containerPort: 80
         env:
+        - name: PA_CREATE_ADMIN
+          value: "1"
         - name: DB_TYPE
           value: "pgsql"
         - name: DB_HOST
