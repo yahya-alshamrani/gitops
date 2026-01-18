@@ -47,8 +47,8 @@ spec:
             secretKeyRef:
               name: pdns-database-app
               key: password
-        # - name: DNS_NS1
-        #   value: "ns1.yourdomain.com"
+        - name: DNS_NS1
+          value: "pdns-service"
         # - name: DNS_NS2
         #   value: "ns2.yourdomain.com"
         # - name: DNS_HOSTMASTER
