@@ -30,6 +30,8 @@ spec:
       containers:
       - name: pdns
         image: powerdns/pdns-auth-50:5.0.2
+        args:
+        - --launch=$(PDNS_LAUNCH)
         env:
         - name: PDNS_API
           value: "yes"
@@ -41,7 +43,7 @@ spec:
           value: "8081"
         - name: PDNS_WEBSERVER_ALLOW_FROM
           value: "0.0.0.0/0"
-        - name: launch
+        - name: PDNS_LAUNCH
           value: "gpgsql"
         - name: PDNS_AUTH_API_KEY
           valueFrom:
