@@ -6,5 +6,6 @@ resources:
 - database.yaml
 - powerdns.yaml
 - secret.yaml
+- poweradmin.yaml
 
 namespace: powerdns-system
