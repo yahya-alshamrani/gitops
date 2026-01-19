@@ -4,34 +4,11 @@ metadata:
   name: pdns-local-config
 data:
   local.conf: |
-    #################################
-    # Backend Configuration
-    #################################
-    launch=gpgsql
-
-    gpgsql-host=${PDNS_GPGSQL_HOST}
-    gpgsql-dbname=${PDNS_GPGSQL_DBNAME}
-    gpgsql-user=${PDNS_GPGSQL_USER}
-    gpgsql-password=${PDNS_GPGSQL_PASSWORD}
+    gpgsql-host=$(PDNS_GPGSQL_HOST)
+    gpgsql-dbname=$(PDNS_GPGSQL_DBNAME)
+    gpgsql-user=$(PDNS_GPGSQL_USER)
+    gpgsql-password=$(PDNS_GPGSQL_PASSWORD)
     gpgsql-dnssec=yes
-
-    #################################
-    # API & Webserver Configuration
-    #################################
-    api=yes
-    api-key=${PDNS_AUTH_API_KEY}
-    
-    webserver=yes
-    webserver-address=0.0.0.0
-    webserver-port=8081
-    webserver-allow-from=0.0.0.0/0
-    webserver-password=${PDNS_AUTH_API_KEY}
-
-    #################################
-    # General Tweaks
-    #################################
-    disable-syslog=yes
-    loglevel=4
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -49,7 +26,7 @@ spec:
     spec:
       containers:
       - name: pdns
-        image: docker.io/yahyaalshamrani/pdns-auth-50:5.0.2_psql
+        image: localhost/pdns-auth-50:5.0.2_psql
         env:
         - name: PDNS_AUTH_API_KEY
           valueFrom:
@@ -78,10 +55,10 @@ spec:
               key: password
         - name: PDNS_GPGSQL_SSLMODE
           value: "disable"
-        # volumeMounts:
-        # - name: config-volume
-        #   mountPath: /etc/powerdns/pdns.d/local.conf
-        #   subPath: local.conf
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/powerdns/pdns.d/local.conf
+          subPath: local.conf
         resources:
           requests:
             cpu: "100m"
