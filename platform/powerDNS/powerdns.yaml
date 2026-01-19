@@ -4,14 +4,34 @@ metadata:
   name: pdns-local-config
 data:
   local.conf: |
-    # Enable the webserver for health checks
+    #################################
+    # Backend Configuration
+    #################################
+    launch=gpgsql
+
+    gpgsql-host=$(PDNS_GPGSQL_HOST)
+    gpgsql-dbname=$(PDNS_GPGSQL_DBNAME)
+    gpgsql-user=$(PDNS_GPGSQL_USER)
+    gpgsql-password=$(PDNS_GPGSQL_PASSWORD)
+    gpgsql-dnssec=yes
+
+    #################################
+    # API & Webserver Configuration
+    #################################
+    api=yes
+    api-key=$(PDNS_AUTH_API_KEY)
+    
     webserver=yes
     webserver-address=0.0.0.0
     webserver-port=8081
     webserver-allow-from=0.0.0.0/0
-    
-    # Enable the API (required if you want to manage records via HTTP)
-    api=yes
+    webserver-password=$(PDNS_AUTH_API_KEY)
+
+    #################################
+    # General Tweaks
+    #################################
+    disable-syslog=yes
+    loglevel=4
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,18 +51,6 @@ spec:
       - name: pdns
         image: powerdns/pdns-auth-50:5.0.2
         env:
-        - name: PDNS_API
-          value: "yes"
-        - name: PDNS_WEBSERVER
-          value: "yes"
-        - name: PDNS_WEBSERVER_ADDRESS
-          value: "0.0.0.0"
-        - name: PDNS_WEBSERVER_PORT
-          value: "8081"
-        - name: PDNS_WEBSERVER_ALLOW_FROM
-          value: "0.0.0.0/0"
-        - name: PDNS_LAUNCH
-          value: "gpgsql"
         - name: PDNS_AUTH_API_KEY
           valueFrom:
             secretKeyRef:
@@ -70,10 +78,10 @@ spec:
               key: password
         - name: PDNS_GPGSQL_SSLMODE
           value: "disable"
-        # volumeMounts:
-        # - name: config-volume
-        #   mountPath: /etc/powerdns/pdns.d/local.conf
-        #   subPath: local.conf
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/powerdns/pdns.d/local.conf
+          subPath: local.conf
         resources:
           requests:
             cpu: "100m"
@@ -100,10 +108,10 @@ spec:
           protocol: TCP
         - containerPort: 8081
           name: api
-      # volumes:
-      # - name: config-volume
-      #   configMap:
-      #     name: pdns-local-config
+      volumes:
+      - name: config-volume
+        configMap:
+          name: pdns-local-config
 ---
 apiVersion: v1
 kind: Service
