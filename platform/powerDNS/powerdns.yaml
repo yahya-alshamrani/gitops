@@ -32,6 +32,7 @@ data:
     #################################
     disable-syslog=yes
     loglevel=4
+    gsqlite3-dnssec=no
 ---
 apiVersion: apps/v1
 kind: Deployment
