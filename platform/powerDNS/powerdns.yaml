@@ -78,10 +78,10 @@ spec:
               key: password
         - name: PDNS_GPGSQL_SSLMODE
           value: "disable"
-        volumeMounts:
-        - name: config-volume
-          mountPath: /etc/powerdns/pdns.d/local.conf
-          subPath: local.conf
+        # volumeMounts:
+        # - name: config-volume
+        #   mountPath: /etc/powerdns/pdns.d/local.conf
+        #   subPath: local.conf
         resources:
           requests:
             cpu: "100m"
