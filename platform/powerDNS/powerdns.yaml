@@ -4,10 +4,10 @@ metadata:
   name: pdns-local-config
 data:
   local.conf: |
-    gpgsql-host=${PDNS_GPGSQL_HOST}
-    gpgsql-dbname=${PDNS_GPGSQL_DBNAME}
-    gpgsql-user=${PDNS_GPGSQL_USER}
-    gpgsql-password=${PDNS_GPGSQL_PASSWORD}
+    gpgsql-host="${PDNS_GPGSQL_HOST}"
+    gpgsql-dbname="${PDNS_GPGSQL_DBNAME}"
+    gpgsql-user="${PDNS_GPGSQL_USER}"
+    gpgsql-password="${PDNS_GPGSQL_PASSWORD}"
     gpgsql-dnssec=yes
 ---
 apiVersion: apps/v1
