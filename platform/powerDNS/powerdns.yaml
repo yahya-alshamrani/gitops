@@ -1,15 +1,15 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: pdns-local-config
-data:
-  local.conf: |
-    gpgsql-host=pdns-database-rw
-    gpgsql-dbname=pdns
-    gpgsql-user=pdns-user
-    gpgsql-password=JpmJB04BUXnXdUsVV4dxC3yYSGJYLYtCIAyQV0AwBISg6wcMEQ97aEsHP5fjRo1n
-    gpgsql-dnssec=yes
----
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: pdns-local-config
+# data:
+#   local.conf: |
+#     gpgsql-host=pdns-database-rw
+#     gpgsql-dbname=pdns
+#     gpgsql-user=pdns-user
+#     gpgsql-password=JpmJB04BUXnXdUsVV4dxC3yYSGJYLYtCIAyQV0AwBISg6wcMEQ97aEsHP5fjRo1n
+#     gpgsql-dnssec=yes
+# ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,13 +26,13 @@ spec:
     spec:
       containers:
       - name: pdns
-        image: localhost/pdns-auth-50:5.0.2_psql
-        # env:
-        # - name: PDNS_AUTH_API_KEY
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: pdns-api-key
-        #       key: api-key
+        image: powerdns/pdns-auth-50:5.0.2
+        env:
+        - name: PDNS_AUTH_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pdns-api-key
+              key: api-key
         # - name: PDNS_GPGSQL_HOST
         #   valueFrom:
         #     secretKeyRef:
@@ -54,9 +54,8 @@ spec:
         #       name: pdns-database-app
         #       key: password
         volumeMounts:
-        - name: config-volume
-          mountPath: /etc/powerdns/pdns.d/local.conf
-          subPath: local.conf
+        - name: sqlite-data
+          mountPath: /var/lib/powerdns/data
         resources:
           requests:
             cpu: "100m"
@@ -84,9 +83,9 @@ spec:
         - containerPort: 8081
           name: api
       volumes:
-      - name: config-volume
-        configMap:
-          name: pdns-local-config
+      - name: sqlite-data
+        persistentVolumeClaim:
+          name: pdns-sqlite-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -108,3 +107,15 @@ spec:
       port: 8081
       targetPort: 8081
   type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pdns-sqlite-pvc
+  namespace: powerdns-system
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
