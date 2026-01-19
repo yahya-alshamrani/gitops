@@ -4,10 +4,10 @@ metadata:
   name: pdns-local-config
 data:
   local.conf: |
-    gpgsql-host="${PDNS_GPGSQL_HOST}"
-    gpgsql-dbname="${PDNS_GPGSQL_DBNAME}"
-    gpgsql-user="${PDNS_GPGSQL_USER}"
-    gpgsql-password="${PDNS_GPGSQL_PASSWORD}"
+    gpgsql-host=pdns-database-rw
+    gpgsql-dbname=pdns
+    gpgsql-user=pdns-user
+    gpgsql-password=JpmJB04BUXnXdUsVV4dxC3yYSGJYLYtCIAyQV0AwBISg6wcMEQ97aEsHP5fjRo1n
     gpgsql-dnssec=yes
 ---
 apiVersion: apps/v1
@@ -27,34 +27,32 @@ spec:
       containers:
       - name: pdns
         image: localhost/pdns-auth-50:5.0.2_psql
-        env:
-        - name: PDNS_AUTH_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: pdns-api-key
-              key: api-key
-        - name: PDNS_GPGSQL_HOST
-          valueFrom:
-            secretKeyRef:
-              name: pdns-database-app
-              key: host
-        - name: PDNS_GPGSQL_DBNAME
-          valueFrom:
-            secretKeyRef:
-              name: pdns-database-app
-              key: dbname
-        - name: PDNS_GPGSQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: pdns-database-app
-              key: username
-        - name: PDNS_GPGSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: pdns-database-app
-              key: password
-        - name: PDNS_GPGSQL_SSLMODE
-          value: "disable"
+        # env:
+        # - name: PDNS_AUTH_API_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: pdns-api-key
+        #       key: api-key
+        # - name: PDNS_GPGSQL_HOST
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: pdns-database-app
+        #       key: host
+        # - name: PDNS_GPGSQL_DBNAME
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: pdns-database-app
+        #       key: dbname
+        # - name: PDNS_GPGSQL_USER
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: pdns-database-app
+        #       key: username
+        # - name: PDNS_GPGSQL_PASSWORD
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: pdns-database-app
+        #       key: password
         volumeMounts:
         - name: config-volume
           mountPath: /etc/powerdns/pdns.d/local.conf
