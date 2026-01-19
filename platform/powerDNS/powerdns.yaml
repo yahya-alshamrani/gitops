@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
       - name: pdns
-        image: pdns-auth-50:5.0.2_psql
+        image: localhost/pdns-auth-50:5.0.2_psql
         env:
         - name: PDNS_AUTH_API_KEY
           valueFrom:
