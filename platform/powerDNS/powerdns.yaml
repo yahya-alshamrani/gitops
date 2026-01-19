@@ -9,23 +9,23 @@ data:
     #################################
     launch=gpgsql
 
-    gpgsql-host=$(PDNS_GPGSQL_HOST)
-    gpgsql-dbname=$(PDNS_GPGSQL_DBNAME)
-    gpgsql-user=$(PDNS_GPGSQL_USER)
-    gpgsql-password=$(PDNS_GPGSQL_PASSWORD)
+    gpgsql-host=${PDNS_GPGSQL_HOST}
+    gpgsql-dbname=${PDNS_GPGSQL_DBNAME}
+    gpgsql-user=${PDNS_GPGSQL_USER}
+    gpgsql-password=${PDNS_GPGSQL_PASSWORD}
     gpgsql-dnssec=yes
 
     #################################
     # API & Webserver Configuration
     #################################
     api=yes
-    api-key=$(PDNS_AUTH_API_KEY)
+    api-key=${PDNS_AUTH_API_KEY}
     
     webserver=yes
     webserver-address=0.0.0.0
     webserver-port=8081
     webserver-allow-from=0.0.0.0/0
-    webserver-password=$(PDNS_AUTH_API_KEY)
+    webserver-password=${PDNS_AUTH_API_KEY}
 
     #################################
     # General Tweaks
@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
       - name: pdns
-        image: localhost/pdns-auth-50:5.0.2_psql
+        image: docker.io/yahyaalshamrani/pdns-auth-50:5.0.2_psql
         env:
         - name: PDNS_AUTH_API_KEY
           valueFrom:
