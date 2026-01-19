@@ -49,8 +49,7 @@ spec:
     spec:
       containers:
       - name: pdns
-        image: powerdns/pdns-auth-50:5.0.2
-        args: ['--config-file=/etc/powerdns/pdns.d']
+        image: pdns-auth-50:5.0.2_psql
         env:
         - name: PDNS_AUTH_API_KEY
           valueFrom:
@@ -79,10 +78,10 @@ spec:
               key: password
         - name: PDNS_GPGSQL_SSLMODE
           value: "disable"
-        volumeMounts:
-        - name: config-volume
-          mountPath: /etc/powerdns/pdns.d/local.conf
-          subPath: local.conf
+        # volumeMounts:
+        # - name: config-volume
+        #   mountPath: /etc/powerdns/pdns.d/local.conf
+        #   subPath: local.conf
         resources:
           requests:
             cpu: "100m"
