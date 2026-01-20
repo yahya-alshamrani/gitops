@@ -85,7 +85,7 @@ spec:
       volumes:
       - name: sqlite-data
         persistentVolumeClaim:
-          name: pdns-sqlite-pvc
+          claimName: pdns-sqlite-pvc
 ---
 apiVersion: v1
 kind: Service
