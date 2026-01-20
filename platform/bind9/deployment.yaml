@@ -39,7 +39,7 @@ spec:
         - name: bind9-config
           mountPath: /etc/bind/named.conf
           subPath: named.conf
-        - name: bind9-zones
+        - name: bind9-data
           mountPath: /var/lib/bind
       volumes:
       - name: bind9-config
