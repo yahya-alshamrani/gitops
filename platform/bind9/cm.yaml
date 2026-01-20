@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bind9-config
+data:
+  named.conf: |
+    // Access Control List for management
+    acl "trusted" {
+      127.0.0.1;
+      10.244.1.0/24;
+    };
+
+    options {
+      directory "/var/cache/bind";
+
+      // Security: Disable recursion to act as Authoritative only
+      recursion no;
+      allow-transfer { none; }; // Disable zone transfers by default
+      allow-query { any; };    // Allow the world to query your auth records
+
+      // Port listening
+      listen-on { any; };
+      listen-on-v6 { any; };
+
+      // Hide BIND version for security obfuscation
+      version "none";
+    };
+
+    // Logging configuration
+    logging {
+      channel default_log {
+        file "/var/log/named/named.log" versions 3 size 5m;
+        severity info;
+        print-time yes;
+        print-category yes;
+        print-severity yes;
+      };
+      category default { default_log; };
+      category queries { default_log; };
+    };
+
+    // Your Zone Definition
+    zone "example.com" {
+      type master;
+      file "/var/lib/bind/db.example.com";
+      allow-update { key "external-dns-key"; }; // Secure RFC 2136
+    };

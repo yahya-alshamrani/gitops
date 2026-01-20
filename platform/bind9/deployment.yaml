@@ -27,7 +27,8 @@ spec:
           protocol: TCP
         volumeMounts:
         - name: bind9-etc-pvc
-          mountPath: /etc/bind
+          mountPath: /etc/bind/named.conf
+          subPath: named.conf
         - name: bind9-var-cache-pvc
           mountPath: /var/cache/bind
         - name: bind9-var-lib-pvc
@@ -36,8 +37,8 @@ spec:
           mountPath: /var/log/bind
       volumes:
       - name: bind9-etc-pvc
-        persistentVolumeClaim:
-          claimName: bind9-etc-pvc
+        configMap:
+          name: bind9-config
       - name: bind9-var-cache-pvc
         persistentVolumeClaim:
           claimName: bind9-var-cache-pvc
