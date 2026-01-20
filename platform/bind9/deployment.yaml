@@ -12,6 +12,15 @@ spec:
       labels:
         app: bind9
     spec:
+      initContainers:
+      - name: copy-zones
+        image: busybox
+        command: ["sh", "-c", "cp /tmp/zones/db.* /var/lib/bind/ && chown -R 100:101 /var/lib/bind && chmod -R 775 /var/lib/bind"]
+        volumeMounts:
+        - name: zone-templates
+          mountPath: /tmp/zones
+        - name: bind9-data
+          mountPath: /var/lib/bind
       containers:
       - name: bind9
         image: internetsystemsconsortium/bind9:9.21
@@ -36,6 +45,9 @@ spec:
       - name: bind9-config
         configMap:
           name: bind9-config
-      - name: bind9-zones
+      - name: zone-templates
         configMap:
           name: bind9-zones
+      - name: bind9-data
+        persistentVolumeClaim:
+          claimName: bind9-data-pvc
