@@ -8,5 +8,5 @@ resources:
 - cnpg-app.yaml
 - crossplane-app.yaml
 - keycloak-app.yaml
-- powerdns-app.yaml
+# - powerdns-app.yaml
 - externaldns-app.yaml
