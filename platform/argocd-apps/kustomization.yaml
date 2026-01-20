@@ -10,3 +10,4 @@ resources:
 - keycloak-app.yaml
 # - powerdns-app.yaml
 - externaldns-app.yaml
+- bind9-app.yaml
