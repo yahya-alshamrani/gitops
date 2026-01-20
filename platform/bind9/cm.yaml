@@ -56,9 +56,9 @@ data:
     };
 
     zone "org1.com" {
-    type master;
-    file "/var/lib/bind/db.org1.com";
-    allow-update { key "ddns-key"; }; # Only clients with this key can update
+        type master;
+        file "/var/lib/bind/db.org1.com";
+        allow-update { key "ddns-key"; }; # Only clients with this key can update
     };
 
     zone "org2.com" {
