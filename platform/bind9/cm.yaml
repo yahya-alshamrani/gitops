@@ -21,7 +21,6 @@ data:
       listen-on tls ephemeral { any; };
       listen-on tls ephemeral http local { any; };
       listen-on-v6 { none; };
-      filter-aaaa-on-v4 yes;
     };
 
     // Logging configuration
