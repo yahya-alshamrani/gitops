@@ -33,6 +33,9 @@ spec:
         - name: bind9-zones
           mountPath: /var/lib/bind
       volumes:
+      - name: bind9-config
+        configMap:
+          name: bind9-config
       - name: bind9-zones
         configMap:
           name: bind9-zones
