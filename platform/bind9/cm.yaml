@@ -8,6 +8,11 @@ data:
         endpoints { "/dns-query"; };
     };
 
+    key "ddns-key" {
+      algorithm hmac-sha256;
+      secret "UErh2WRGlvHPC4/RYhdzP040xeP/EgNccDFocBi+P4w=";
+    };
+
     options {
       directory "/var/cache/bind";
 
@@ -48,4 +53,16 @@ data:
         category default { "console"; "file_log"; };
         category queries { "console"; "file_log"; };
         category config  { "console"; "file_log"; };
+    };
+
+    zone "org1.com" {
+    type master;
+    file "/var/lib/bind/db.org1.com";
+    allow-update { key "ddns-key"; }; # Only clients with this key can update
+    };
+
+    zone "org2.com" {
+        type master;
+        file "/var/lib/bind/db.org2.com";
+        allow-update { key "ddns-key"; };
     };

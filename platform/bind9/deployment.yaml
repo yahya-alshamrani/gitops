@@ -30,22 +30,9 @@ spec:
         - name: bind9-config
           mountPath: /etc/bind/named.conf
           subPath: named.conf
-      #   - name: bind9-var-cache-pvc
-      #     mountPath: /var/cache/bind
-      #   - name: bind9-var-lib-pvc
-      #     mountPath: /var/lib/bind
-      #   - name: bind9-var-logs-pvc
-      #     mountPath: /var/log/bind
+        - name: bind9-zones
+          mountPath: /var/lib/bind
       volumes:
-      - name: bind9-config
+      - name: bind9-zones
         configMap:
-          name: bind9-config
-      # - name: bind9-var-cache-pvc
-      #   persistentVolumeClaim:
-      #     claimName: bind9-var-cache-pvc
-      # - name: bind9-var-lib-pvc
-      #   persistentVolumeClaim:
-      #     claimName: bind9-var-lib-pvc
-      # - name: bind9-var-logs-pvc
-      #   persistentVolumeClaim:
-      #     claimName: bind9-var-logs-pvc
+          name: bind9-zones
