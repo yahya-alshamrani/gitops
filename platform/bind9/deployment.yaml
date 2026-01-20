@@ -15,7 +15,7 @@ spec:
       containers:
       - name: bind9
         image: internetsystemsconsortium/bind9:9.21
-        args: ["-4", "-f", "-c", "/etc/bind/named.conf"]
+        args: ["-4", "-f", "-c", "/etc/bind/named.conf", "-g"]
         ports:
         - containerPort: 53
           name: dns-udp
