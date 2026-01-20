@@ -18,11 +18,10 @@ data:
 
       // Port listening
       listen-on { any; };
-      listen-on-v6 { any; };
       listen-on tls ephemeral { any; };
-      listen-on-v6 tls ephemeral { any; };
       listen-on tls ephemeral http local { any; };
-      listen-on-v6 tls ephemeral http local { any; };
+      listen-on-v6 { none; };
+      filter-aaaa-on-v4 yes;
     };
 
     // Logging configuration
