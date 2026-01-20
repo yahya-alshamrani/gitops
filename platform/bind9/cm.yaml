@@ -42,7 +42,7 @@ data:
         # Channel 2: The File (for persistence on the PVC)
         # Ensure /var/lib/bind/logs exists or point to a writable dir
         channel "file_log" {
-            file "/var/lib/bind/named.log" versions 3 size 10m;
+            file "/var/log/bind/named.log" versions 3 size 10m;
             severity info;
             print-time yes;
             print-category yes;
