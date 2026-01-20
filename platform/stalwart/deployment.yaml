@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stalwart
+  labels:
+    app: stalwart
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: stalwart
+  template:
+    metadata:
+      labels:
+        app: stalwart
+    spec:
+      containers:
+      - name: stalwart
+        image: stalwartlabs/stalwart:latest
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /healthz/live
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /healthz/ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        ports:
+        - containerPort: 8080 # Admin UI / JMAP
+        - containerPort: 443  # HTTPS
+        - containerPort: 25   # SMTP
+        - containerPort: 587  # SMTP Submission
+        - containerPort: 465  # SMTPS
+        - containerPort: 143  # IMAP
+        - containerPort: 993  # IMAPS
+        - containerPort: 110  # POP3
+        - containerPort: 995  # POP3S
+        - containerPort: 4190 # Sieve
+        volumeMounts:
+        - name: data
+          mountPath: /opt/stalwart
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: stalwart-data
