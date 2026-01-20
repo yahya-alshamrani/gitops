@@ -7,3 +7,4 @@ $TTL 86400
             604800     ; Expire
             86400 )    ; Minimum
 @   IN  NS  bind9-service.bind9-system.svc.cluster.local.
+@   IN  MX  10  stalwart-service.stalwart-system.svc.cluster.local.
