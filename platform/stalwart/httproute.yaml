@@ -12,7 +12,14 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /
+            value: /admin
       backendRefs:
         - name: stalwart-service
           port: 8080
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /mailbox
+      backendRefs:
+        - name: stalwart-service
+          port: 443
