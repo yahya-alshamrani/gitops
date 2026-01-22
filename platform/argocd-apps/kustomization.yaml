@@ -12,3 +12,4 @@ resources:
 - externaldns-app.yaml
 - bind9-app.yaml
 - stalwart-app.yaml
+- authentik-app.yaml
