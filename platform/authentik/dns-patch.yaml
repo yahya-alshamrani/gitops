@@ -1,0 +1,14 @@
+- op: replace
+  path: /spec/template/spec/dnsPolicy
+  value: None
+- op: add
+  path: /spec/template/spec/dnsConfig
+  value:
+    nameservers:
+      - bind9-service.bind9-system.svc.cluster.local
+      - 10.96.0.10
+    searches:
+      - cluster.local
+    options:
+      - name: ndots
+        value: "2"
