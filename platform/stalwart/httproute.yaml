@@ -7,7 +7,7 @@ spec:
     - name: ingress-gateway
       namespace: kgateway-system
   hostnames:
-    - "mail.lab.local"
+    - "mail-admin.lab.local"
   rules:
     - matches:
         - path:
@@ -16,10 +16,22 @@ spec:
       backendRefs:
         - name: stalwart-service
           port: 8080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: stalwart-mailbox-route
+spec:
+  parentRefs:
+    - name: ingress-gateway
+      namespace: kgateway-system
+  hostnames:
+    - "mail.lab.local"
+  rules:
     - matches:
         - path:
             type: PathPrefix
-            value: /mailbox
+            value: /
       backendRefs:
         - name: stalwart-service
           port: 443
