@@ -5,7 +5,7 @@
   path: /spec/template/spec/dnsConfig
   value:
     nameservers:
-      - bind9-service.bind9-system.svc.cluster.local
+      - 10.109.47.194
       - 10.96.0.10
     searches:
       - cluster.local
