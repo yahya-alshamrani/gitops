@@ -742,7 +742,12 @@ worker:
   # -- Environment variables to pass to the authentik worker. Does not apply to GeoIP
   # See configuration options at https://goauthentik.io/docs/installation/configuration/
   # @default -- `[]` (See [values.yaml])
-  env: []
+  env: 
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-database-app
+          key: password
     # - name: AUTHENTIK_VAR_NAME
     #   value: VALUE
     # - name: AUTHENTIK_VAR_OTHER
