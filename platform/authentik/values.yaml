@@ -154,7 +154,7 @@ authentik:
   log_level: info
   # -- Secret key used for cookie singing and unique user IDs,
   # don't change this after the first install
-  secret_key: ""
+  secret_key: "G3TTowwUK7mivVe8O/K3kndSXSUuTI/y+GXJuRx/kQa4TRsx3q6H8Zn7kdc2iEfEqk5PPrasl0AQou9k"
   ## use existing secret for authentik configuration instead of creating one
   ## WARNING: when set, authentik.* secret values are ignored
   existingSecret:
