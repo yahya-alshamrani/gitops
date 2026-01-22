@@ -13,14 +13,4 @@ helmCharts:
     namespace: authentik-system
     valuesFile: values.yaml
 
-patches:
-- path: dns-patch.yaml
-  target:
-    kind: Deployment
-    name: authentik-server
-- path: dns-patch.yaml
-  target:
-    kind: Deployment
-    name: authentik-worker
-
 namespace: authentik-system
