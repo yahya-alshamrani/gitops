@@ -211,7 +211,7 @@ authentik:
     # -- postgresql Username
     # @default -- `authentik`
     user: "authentik-user"
-    password: "D8WU1DK1jjOi2grxizX4yqJyQlvKLGxVcaOVINDGZ4cYLu1tpcH14o9yHxZYsLZd"
+    password: ""
     port: 5432
 
 blueprints:
@@ -303,7 +303,12 @@ server:
   # -- Environment variables to pass to the authentik server. Does not apply to GeoIP
   # See configuration options at https://goauthentik.io/docs/installation/configuration/
   # @default -- `[]` (See [values.yaml])
-  env: []
+  env: 
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-database-app
+          key: password
     # - name: AUTHENTIK_VAR_NAME
     #   value: VALUE
     # - name: AUTHENTIK_VAR_OTHER
