@@ -210,7 +210,7 @@ authentik:
     name: "authentik"
     # -- postgresql Username
     # @default -- `authentik`
-    user: "authentik"
+    user: "authentik-user"
     password: ""
     port: 5432
 
