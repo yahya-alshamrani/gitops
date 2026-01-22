@@ -204,14 +204,14 @@ authentik:
     # -- set the postgresql hostname to talk to
     # if unset and .Values.postgresql.enabled == true, will generate the default
     # @default -- `{{ .Release.Name }}-postgresql`
-    host: "{{ .Release.Name }}-postgresql"
+    host: "authentik-database-rw"
     # -- postgresql Database name
     # @default -- `authentik`
     name: "authentik"
     # -- postgresql Username
     # @default -- `authentik`
     user: "authentik-user"
-    password: ""
+    password: "D8WU1DK1jjOi2grxizX4yqJyQlvKLGxVcaOVINDGZ4cYLu1tpcH14o9yHxZYsLZd"
     port: 5432
 
 blueprints:
