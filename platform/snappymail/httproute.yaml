@@ -7,7 +7,7 @@ spec:
     - name: ingress-gateway
       namespace: kgateway-system
   hostnames:
-    - "mail.lab.local"
+    - "webmail.lab.local"
   rules:
     - matches:
         - path:
