@@ -13,3 +13,4 @@ resources:
 - bind9-app.yaml
 - stalwart-app.yaml
 - authentik-app.yaml
+- snappymail-app.yaml
