@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snappymail
+  labels:
+    app.kubernetes.io/name: snappymail
+    app.kubernetes.io/instance: snappymail
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: snappymail
+      app.kubernetes.io/instance: snappymail
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: snappymail
+        app.kubernetes.io/instance: snappymail
+    spec:
+      securityContext:
+        {}
+      containers:
+        - name: snappymail
+          securityContext:
+            {}
+          image: "porto.interlegis.leg.br/library/docker-snappymail-il:2.27.2"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: UPLOAD_MAX_SIZE
+              value: "25M"
+            - name: LOG_TO_STDERR
+              value: "true"
+            - name: MEMORY_LIMIT
+              value: "128M"
+            - name: SECURE_COOKIES
+              value: "true"
+          volumeMounts:
+            - mountPath: /snappymail/data
+              name: snappymaildata
+          ports:
+            - name: http
+              containerPort: 8888
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            successThreshold: 2
+            failureThreshold: 3
+            timeoutSeconds: 2
+          resources:
+            limits:
+              cpu: 1500m
+              memory: 1500Mi
+            requests:
+              cpu: 500m
+              memory: 700Mi
+      volumes:
+        - name: snappymaildata
+          persistentVolumeClaim:
+            claimName: snappymail-data
+

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: snappymail-data
+  labels:
+    app.kubernetes.io/name: snappymail
+    app.kubernetes.io/instance: snappymail
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi

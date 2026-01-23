@@ -1,18 +1,18 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: stalwart-route
+  name: snappymail-route
 spec:
   parentRefs:
     - name: ingress-gateway
       namespace: kgateway-system
   hostnames:
-    - "stalwart.lab.local"
+    - "mail.lab.local"
   rules:
     - matches:
         - path:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: stalwart-service
-          port: 8080
+        - name: snappymail-service
+          port: 80

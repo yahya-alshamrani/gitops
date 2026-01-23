@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: snappymail
+  namespace: argocd
+spec:
+  destination:
+    namespace: snappymail-system
+    server: https://kubernetes.default.svc
+  project: applications
+  source:
+    path: platform/snappymail
+    repoURL: https://github.com/yahya-alshamrani/gitops
+    targetRevision: main
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
