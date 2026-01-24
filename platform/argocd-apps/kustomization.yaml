@@ -12,3 +12,4 @@ resources:
 - bind9-app.yaml
 - stalwart-app.yaml
 - snappymail-app.yaml
+- staticDNS-app.yaml
