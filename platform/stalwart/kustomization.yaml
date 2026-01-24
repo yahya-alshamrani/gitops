@@ -9,3 +9,4 @@ resources:
 - pvc.yaml
 - svc.yaml
 - httproute.yaml
+- config.yaml
