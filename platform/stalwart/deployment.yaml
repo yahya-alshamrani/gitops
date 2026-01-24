@@ -45,7 +45,7 @@ spec:
         - containerPort: 4190 # Sieve
         volumeMounts:
         - name: data
-          mountPath: /opt/stalwart
+          mountPath: /opt/stalwart/data
         - name: config
           mountPath: /opt/stalwart/etc/config.toml
           subPath: config.toml
