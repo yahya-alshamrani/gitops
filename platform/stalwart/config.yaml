@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: stalwart-config
 data:
-  config.toml: |-
+  config.toml: |
     authentication.fallback-admin.secret = "$6$9BKvdqVd63ULnXXX$8S44SkXOsDGOWHK/yBLrym26KdenrI49r0bHghVs7XqZbOpMlmWcVK.My.KXN13AhAKiGulCECiHgxeubDbM3/"
     authentication.fallback-admin.user = "admin"
     directory.internal.store = "rocksdb"
@@ -38,9 +38,9 @@ data:
     server.socket.nodelay = true
     server.socket.reuse-addr = true
     server.socket.reuse-port = true
+    storage.directory = "authentik"
     storage.blob = "rocksdb"
     storage.data = "rocksdb"
-    storage.directory = "internal"
     storage.fts = "rocksdb"
     storage.lookup = "rocksdb"
     store.rocksdb.compression = "lz4"
@@ -64,5 +64,3 @@ data:
     fields.email = "email"
     fields.username = "preferred_username"
     fields.full-name = "name"
-    [storage]
-    directory = "authentik"
