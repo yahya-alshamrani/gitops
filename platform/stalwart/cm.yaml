@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: stalwart-config
+data:
+  config.toml: |
+    authentication.fallback-admin.secret = "$6$9BKvdqVd63ULnXXX$8S44SkXOsDGOWHK/yBLrym26KdenrI49r0bHghVs7XqZbOpMlmWcVK.My.KXN13AhAKiGulCECiHgxeubDbM3/"
+    authentication.fallback-admin.user = "admin"
+    directory.internal.store = "rocksdb"
+    directory.internal.type = "internal"
+    server.hostname = "stalwart-service.stalwart-system.svc.cluster.local"
+    server.listener.http.bind = "[::]:8080"
+    server.listener.http.protocol = "http"
+    server.listener.https.bind = "[::]:443"
+    server.listener.https.protocol = "http"
+    server.listener.https.tls.implicit = true
+    server.listener.imap.bind = "[::]:143"
+    server.listener.imap.protocol = "imap"
+    server.listener.imaptls.bind = "[::]:993"
+    server.listener.imaptls.protocol = "imap"
+    server.listener.imaptls.tls.implicit = true
+    server.listener.pop3.bind = "[::]:110"
+    server.listener.pop3.protocol = "pop3"
+    server.listener.pop3s.bind = "[::]:995"
+    server.listener.pop3s.protocol = "pop3"
+    server.listener.pop3s.tls.implicit = true
+    server.listener.sieve.bind = "[::]:4190"
+    server.listener.sieve.protocol = "managesieve"
+    server.listener.smtp.bind = "[::]:25"
+    server.listener.smtp.protocol = "smtp"
+    server.listener.submission.bind = "[::]:587"
+    server.listener.submission.protocol = "smtp"
+    server.listener.submissions.bind = "[::]:465"
+    server.listener.submissions.protocol = "smtp"
+    server.listener.submissions.tls.implicit = true
+    server.max-connections = 8192
+    server.socket.backlog = 1024
+    server.socket.nodelay = true
+    server.socket.reuse-addr = true
+    server.socket.reuse-port = true
+    storage.blob = "rocksdb"
+    storage.data = "rocksdb"
+    storage.directory = "internal"
+    storage.fts = "rocksdb"
+    storage.lookup = "rocksdb"
+    store.rocksdb.compression = "lz4"
+    store.rocksdb.path = "/opt/stalwart/data"
+    store.rocksdb.type = "rocksdb"
+    tracer.log.ansi = false
+    tracer.log.enable = true
+    tracer.log.level = "info"
+    tracer.log.path = "/opt/stalwart/logs"
+    tracer.log.prefix = "stalwart.log"
+    tracer.log.rotate = "daily"
+    tracer.log.type = "log"
+
+    [directory."authentik"]
+    type = "oidc"
+    timeout = "5s"
+    # This is the Introspection endpoint for your specific provider
+    endpoint.url = "http://idp.lab.local/application/o/token/introspect/"
+    endpoint.method = "introspect"
+
+    # Use the Client ID and Secret you just created
+    auth.method = "basic"
+    auth.username = "cB7JoG8sNPA3zNrwdwCELtTLKYjdyvy01q04O2vJ"
+    auth.secret = "8V00rTeh9xBgyktfiD6mJblt6YBvd6FfFZHGgumxGjXpezpNsiKSjBJMwxPm7TLg12S5BiNVKBzZivtleJ80HUNpzfhV0TddLnXKhBv1KtVCErJb2Zc2NWduhORDJOP1"
+
+    # Map the authentik claims to Stalwart fields
+    fields.email = "email"
+    fields.username = "preferred_username"
+    fields.full-name = "name"

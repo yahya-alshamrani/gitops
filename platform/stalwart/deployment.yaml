@@ -46,7 +46,13 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /opt/stalwart
+        - name: config
+          mountPath: /opt/stalwart/etc/config.toml
+          subPath: config.toml
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: stalwart-data
+      - name: config
+        configMap:
+          name: stalwart-config
