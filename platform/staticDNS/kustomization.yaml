@@ -4,9 +4,9 @@ kind: Kustomization
 namespace: kube-system
 
 configMapGenerator:
-- name: coredns
+- name: Corefile
   files:
-    - coredns
+    - Corefile
     
 generatorOptions:
   disableNameSuffixHash: true
