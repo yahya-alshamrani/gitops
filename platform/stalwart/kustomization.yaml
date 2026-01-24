@@ -9,4 +9,8 @@ resources:
 - pvc.yaml
 - svc.yaml
 - httproute.yaml
-- config.yaml
+
+configMapGenerator:
+- name: stalwart-config
+  files:
+    - config.yaml
