@@ -38,9 +38,3 @@ org2.com:53 {
     forward . 10.109.47.194
     reload
 }
-lab.local:53 {
-    errors
-    cache 30
-    forward . 10.109.47.194
-    reload
-}
