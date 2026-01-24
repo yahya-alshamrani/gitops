@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: stalwart-config
 data:
-  config.toml: |
+  config.toml: |-
     authentication.fallback-admin.secret = "$6$9BKvdqVd63ULnXXX$8S44SkXOsDGOWHK/yBLrym26KdenrI49r0bHghVs7XqZbOpMlmWcVK.My.KXN13AhAKiGulCECiHgxeubDbM3/"
     authentication.fallback-admin.user = "admin"
     directory.internal.store = "rocksdb"
