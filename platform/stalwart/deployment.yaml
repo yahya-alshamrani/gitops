@@ -47,7 +47,7 @@ spec:
         - name: data
           mountPath: /opt/stalwart
         - name: config
-          mountPath: /opt/stalwart/etc/config.toml
+          mountPath: /config.toml
           subPath: config.toml
       volumes:
       - name: data
