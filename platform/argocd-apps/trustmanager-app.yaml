@@ -12,6 +12,13 @@ spec:
     path: platform/trust-manager
     repoURL: https://github.com/yahya-alshamrani/gitops
     targetRevision: main
+  ignoreDifferences: 
+    - group: ""
+      kind: Namespace
+      name: cert-manager
+      jsonPointers:
+        - /metadata/labels/app.kubernetes.io~1managed-by
+        - /metadata/annotations/argocd.argoproj.io~1tracking-id
   syncPolicy:
     automated:
       selfHeal: true
