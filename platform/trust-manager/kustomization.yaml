@@ -12,13 +12,13 @@ helmCharts:
     namespace: cert-manager
     valuesFile: values.yaml
 
-patches:
-  - target:
-      kind: Namespace
-      name: cert-manager
-    patch: |-
-      apiVersion: v1
-      kind: Namespace
-      metadata:
-        name: cert-manager
-      $patch: delete
+# patches:
+#   - target:
+#       kind: Namespace
+#       name: cert-manager
+#     patch: |-
+#       apiVersion: v1
+#       kind: Namespace
+#       metadata:
+#         name: cert-manager
+#       $patch: delete
