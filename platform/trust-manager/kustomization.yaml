@@ -11,5 +11,3 @@ helmCharts:
     releaseName: trust-manager
     namespace: trust-manager
     valuesFile: values.yaml
-
-namespace: trust-manager

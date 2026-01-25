@@ -39,7 +39,7 @@ nameOverride: ""
 # The namespace to install trust-manager into.
 # If not set, the namespace of the release is used.
 # This is helpful when installing trust-manager as a chart dependency (sub chart).
-namespace: ""
+namespace: "trust-manager"
 # For Private docker registries, authentication is needed. Registry secrets are applied to the service account.
 imagePullSecrets: []
 image:
