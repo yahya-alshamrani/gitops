@@ -9,5 +9,5 @@ helmCharts:
     repo: https://charts.jetstack.io
     version: v0.20.3
     releaseName: trust-manager
-    namespace: trust-manager
+    namespace: cert-manager
     valuesFile: values.yaml
