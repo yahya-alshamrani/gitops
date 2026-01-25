@@ -18,3 +18,9 @@ spec:
     name: https
     port: 443
     protocol: HTTPS
+    hostname: "*.lab.local"
+    tls:
+      mode: Terminate
+      certificateRefs:
+        - name: lab-wildcard-tls
+          kind: Secret
