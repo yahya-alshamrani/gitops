@@ -3,6 +3,8 @@ kind: Kustomization
 
 resources:
 - namespace.yaml
+- root-ca.yaml
+- intermediate-ca.yaml
 
 helmCharts:
   - name: cert-manager
