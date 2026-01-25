@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lab-wildcard-cert
+spec:
+  secretName: lab-wildcard-tls
+  isCA: false
+  usages:
+    - server auth
+    - client auth
+  dnsNames:
+    - "lab.local"
+    - "*.lab.local"
+  issuerRef:
+    name: lab-intermediate-issuer
+    kind: ClusterIssuer
