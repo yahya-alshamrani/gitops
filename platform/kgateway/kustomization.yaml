@@ -5,6 +5,7 @@ resources:
 - gateway-api-crds-install.yaml
 - namespace.yaml
 - default-gateway.yaml
+- lab-wildcard-cert.yaml
 
 helmCharts:
   - name: kgateway-crds

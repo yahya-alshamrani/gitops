@@ -5,7 +5,6 @@ resources:
 - namespace.yaml
 - root-ca.yaml
 - intermediate-ca.yaml
-- lab-wildcard-cert.yaml
 
 helmCharts:
   - name: cert-manager
