@@ -13,3 +13,5 @@ resources:
 - stalwart-app.yaml
 - snappymail-app.yaml
 - staticDNS-app.yaml
+- certmanager-app.yaml
+- trustmanager-app.yaml

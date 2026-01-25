@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trust-manager
+  namespace: argocd
+spec:
+  destination:
+    namespace: trust-manager
+    server: https://kubernetes.default.svc
+  project: platform
+  source:
+    path: platform/trust-manager
+    repoURL: https://github.com/yahya-alshamrani/gitops
+    targetRevision: main
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
