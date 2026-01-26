@@ -16,21 +16,21 @@ spec:
     spec:
       containers:
       - name: debugger
-        command: ["/bin/sh", "-c"]
-        args:
-          - |
-            # 1. Grab the real K8s DNS IP from the pod's resolv.conf
-            K8S_DNS=$(grep nameserver /etc/resolv.conf | awk '{print $2}')
-            echo "Patching Nginx resolver to use: $K8S_DNS"
+        # command: ["/bin/sh", "-c"]
+        # args:
+        #   - |
+        #     # 1. Grab the real K8s DNS IP from the pod's resolv.conf
+        #     K8S_DNS=$(grep nameserver /etc/resolv.conf | awk '{print $2}')
+        #     echo "Patching Nginx resolver to use: $K8S_DNS"
             
-            # 2. Update the hardcoded 127.0.0.11 in the config file
-            # The file is at /usr/local/openresty/nginx/conf/conf.d/default.conf 
-            # or /etc/nginx/conf.d/default.conf depending on the build
-            TARGET_FILE="/etc/nginx/conf.d/default.conf"
-            sed -i "s/127.0.0.11/$K8S_DNS/g" $TARGET_FILE
+        #     # 2. Update the hardcoded 127.0.0.11 in the config file
+        #     # The file is at /usr/local/openresty/nginx/conf/conf.d/default.conf 
+        #     # or /etc/nginx/conf.d/default.conf depending on the build
+        #     TARGET_FILE="/etc/nginx/conf.d/default.conf"
+        #     sed -i "s/127.0.0.11/$K8S_DNS/g" $TARGET_FILE
             
-            # 3. Start the original entrypoint (OpenResty)
-            exec /usr/local/openresty/bin/openresty -g 'daemon off;'
+        #     # 3. Start the original entrypoint (OpenResty)
+        #     exec /usr/local/openresty/bin/openresty -g 'daemon off;'
         image: leplusorg/openid-connect-provider-debugger
         envFrom:
         - secretRef:
