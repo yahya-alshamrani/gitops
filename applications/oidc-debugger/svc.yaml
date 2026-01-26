@@ -4,7 +4,7 @@ metadata:
   name: oidc-debugger-svc
 spec:
   ports:
-  - port: 80
+  - port: 8080
     targetPort: 8080
   selector:
     app: oidc-debugger

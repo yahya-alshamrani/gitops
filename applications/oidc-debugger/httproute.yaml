@@ -16,4 +16,4 @@ spec:
             value: /
       backendRefs:
         - name: oidc-debugger-svc
-          port: 80
+          port: 8080
