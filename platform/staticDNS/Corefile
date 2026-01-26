@@ -8,6 +8,7 @@
     rewrite name argocd.lab.local argocd.argocd.svc.cluster.local
     rewrite name webmail.lab.local snappymail-service.snappymail-system.svc.cluster.local
     rewrite name stalwart.lab.local stalwart-service.stalwart-system.svc.cluster.local
+    rewrite name oidc-debugger.lab.local oidc-debugger.oidc-debugger.svc.cluster.local
     kubernetes cluster.local in-addr.arpa ip6.arpa {
         pods insecure
         fallthrough in-addr.arpa ip6.arpa
