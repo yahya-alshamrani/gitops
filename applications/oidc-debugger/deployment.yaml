@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oidc-debugger
+  labels:
+    app: oidc-debugger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oidc-debugger
+  template:
+    metadata:
+      labels:
+        app: oidc-debugger
+    spec:
+      containers:
+      - name: debugger
+        image: leplusorg/openid-connect-provider-debugger
+        ports:
+        - containerPort: 8080
