@@ -14,6 +14,11 @@ spec:
       labels:
         app: oidc-debugger
     spec:
+      hostAliases:
+      - ip: "10.96.78.208"
+        hostnames:
+        - "sso.lab.local"
+        - "debugger.lab.local"
       containers:
       - name: debugger
         command: ["/bin/sh", "-c"]
