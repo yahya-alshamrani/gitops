@@ -7,7 +7,7 @@ spec:
     - name: ingress-gateway
       namespace: kgateway-system
   hostnames:
-    - "oidc-debugger.lab.local"
+    - "debugger.lab.local"
   rules:
     - matches:
         - path:
