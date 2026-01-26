@@ -6,5 +6,6 @@ resources:
 - deployment.yaml
 - svc.yaml 
 - httproute.yaml
+- secret.yaml
 
 namespace: oidc-debugger
