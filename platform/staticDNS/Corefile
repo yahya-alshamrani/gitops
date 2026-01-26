@@ -10,8 +10,9 @@
         ttl 30
     }
     template IN A lab.local {
-        match "^.*\.lab\.local\.$"
-        answer "{{ .Name }} 60 IN A 10.96.78.208"
+        match "^(?P<prefix>.*)\.lab\.local\.$"
+        # Note: Removed the dot from the end of the name variable if possible
+        answer "{{ .Name }} 60 IN A 10.96.78.208" 
         fallthrough
     }
     prometheus :9153
