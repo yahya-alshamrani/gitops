@@ -1,0 +1,14 @@
+$ORIGIN lab.local.
+$TTL 86400
+@   IN  SOA bind9-service.bind9-system.svc.cluster.local. admin.lab.local. (
+            2026012001 ; Serial
+            3600       ; Refresh
+            1800       ; Retry
+            604800     ; Expire
+            86400 )    ; Minimum
+@   IN  NS  bind9-service.bind9-system.svc.cluster.local.
+sso IN A 10.96.78.208
+debugger IN A 10.96.78.208
+argocd IN A 10.96.78.208
+webmail IN A 10.96.78.208
+stalwart IN A 10.96.78.208

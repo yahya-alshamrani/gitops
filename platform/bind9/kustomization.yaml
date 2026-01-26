@@ -16,3 +16,4 @@ configMapGenerator:
   files:
     - zones/db.org1.com
     - zones/db.org2.com
+    - zones/db.lab.local
