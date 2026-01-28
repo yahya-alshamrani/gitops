@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
 - oidc-debugger-app.yaml
+- todo-app.yaml
