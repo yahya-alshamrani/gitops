@@ -15,5 +15,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: todo-app
+        - name: todo-app-svc
           port: 3000
