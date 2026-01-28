@@ -8,3 +8,5 @@ resources:
 - cm.yaml
 - secret.yaml
 - httproute.yaml
+
+namespace: todo-app
