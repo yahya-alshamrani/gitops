@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-app-config
+data:
+  AUTH: "true"
+  REALM: "app"
+  CLIENT_ID: "todo-app"
+  AUTH_SERVICE_URL: "https://sso.lab.local"
