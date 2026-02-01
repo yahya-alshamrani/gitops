@@ -8,7 +8,6 @@ spec:
       namespace: kgateway-system
   hostnames:
     - "sso.lab.local"
-    - "sso.yahya-lab.com"
   rules:
     - matches:
         - path:
