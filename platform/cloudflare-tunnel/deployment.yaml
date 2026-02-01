@@ -35,6 +35,11 @@ spec:
             - --metrics
             - 0.0.0.0:2000
             - run
+          volumeMounts:
+            - name: trusted-ca
+              mountPath: /etc/ssl/certs/ca-certificates.crt
+              subPath: ca-certificates.crt 
+              readOnly: true
           livenessProbe:
             httpGet:
               # Cloudflared has a /ready endpoint which returns 200 if and only if
@@ -44,3 +49,7 @@ spec:
             failureThreshold: 1
             initialDelaySeconds: 10
             periodSeconds: 10
+      volumes:
+        - name: trusted-ca
+          configMap:
+            name: lab-ca-bundle
