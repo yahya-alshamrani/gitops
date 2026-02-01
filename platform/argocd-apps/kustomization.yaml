@@ -15,3 +15,4 @@ resources:
 - staticDNS-app.yaml
 - certmanager-app.yaml
 - trustmanager-app.yaml
+- cloudflare-tunnel-app.yaml
