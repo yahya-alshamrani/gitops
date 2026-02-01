@@ -5,6 +5,7 @@ resources:
 - namespace.yaml
 - database.yaml
 - keycloak.yaml
+- svc.yaml
 - httproute.yaml
 
 namespace: keycloak-system
