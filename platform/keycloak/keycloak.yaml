@@ -29,9 +29,9 @@ spec:
             - name: KC_HOSTNAME_STRICT
               value: "true"
             - name: KC_HOSTNAME_ADMIN
-              value: "sso.lab.local"
-            - name: KC_HOSTNAME_STRICT_BACKCHANNEL
-              value: "true"
+              value: "https://sso.lab.local"
+            - name: KC_HOSTNAME_BACKCHANNEL_DYNAMIC
+              value: "false"
             - name: KC_HEALTH_ENABLED
               value: "true"
             - name: 'KC_CACHE'
