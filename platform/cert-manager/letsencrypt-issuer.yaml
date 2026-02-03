@@ -1,0 +1,19 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    email: acme@yahya-lab.com
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: example-issuer-account-key
+    solvers:
+    - dns01:
+        cloudflare:
+          apiKeySecretRef:
+            name: cloudflare-apikey-secret
+            key: api-token
+      selector:
+        dnsZones:
+        - 'yahya-lab.com'

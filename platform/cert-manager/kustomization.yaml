@@ -5,6 +5,8 @@ resources:
 - namespace.yaml
 - root-ca.yaml
 - intermediate-ca.yaml
+- cloudflare-apikey-secret.yaml
+- letsencrypt-issuer.yaml
 
 helmCharts:
   - name: cert-manager
