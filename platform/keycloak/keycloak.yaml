@@ -25,7 +25,7 @@ spec:
             - name: KC_HTTP_ENABLED
               value: "true"
             - name: KC_HOSTNAME
-              value: "sso.yahya-lab.com"
+              value: "https://sso.yahya-lab.com"
             - name: KC_HOSTNAME_STRICT
               value: "true"
             - name: KC_HOSTNAME_ADMIN
