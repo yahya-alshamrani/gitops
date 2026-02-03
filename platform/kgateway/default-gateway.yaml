@@ -3,6 +3,8 @@ kind: Gateway
 metadata:
   name: ingress-gateway
   namespace: kgateway-system
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   gatewayClassName: kgateway
   listeners:
@@ -23,4 +25,16 @@ spec:
       mode: Terminate
       certificateRefs:
         - name: lab-wildcard-tls
+          kind: Secret
+  - allowedRoutes:
+      namespaces:
+        from: All
+    name: public-https
+    port: 443
+    protocol: HTTPS
+    hostname: "sso.yahya-lab.com"
+    tls:
+      mode: Terminate
+      certificateRefs:
+        - name: sso-yahya-lab-com-tls
           kind: Secret
