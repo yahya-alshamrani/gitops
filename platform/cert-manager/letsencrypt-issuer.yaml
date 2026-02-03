@@ -12,7 +12,7 @@ spec:
     - dns01:
         cloudflare:
           email: acme@yahya-lab.com
-          apiKeySecretRef:
+          apiTokenSecretRef:
             name: cloudflare-apikey-secret
             key: api-token
       selector:
