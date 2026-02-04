@@ -14,14 +14,6 @@ spec:
       - path: { type: PathPrefix, value: "/realms" }
       - path: { type: PathPrefix, value: "/resources" }
       - path: { type: PathPrefix, value: "/js" }
-      filters:
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            set:
-              - name: "X-Forwarded-Host"
-                value: "sso.lab.local"
-              - name: "X-Forwarded-Proto"
-                value: "https"
       backendRefs:
         - name: keycloak
           port: 8080
