@@ -13,6 +13,7 @@ spec:
       - path: { type: PathPrefix, value: "/admin" }
       - path: { type: PathPrefix, value: "/realms" }
       - path: { type: PathPrefix, value: "/resources" }
+      - path: { type: PathPrefix, value: "/js" }
       backendRefs:
         - name: keycloak
           port: 8080

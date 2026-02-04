@@ -27,9 +27,11 @@ spec:
             - name: KC_HOSTNAME
               value: "https://sso.yahya-lab.com"
             - name: KC_HOSTNAME_STRICT
-              value: "true"
+              value: "false"
             - name: KC_HOSTNAME_ADMIN
               value: "https://sso.lab.local"
+            - name: KC_HOSTNAME_STRICT_BACKCHANNEL
+              value: "true"
             - name: KC_HOSTNAME_BACKCHANNEL_DYNAMIC
               value: "false"
             - name: KC_HEALTH_ENABLED
