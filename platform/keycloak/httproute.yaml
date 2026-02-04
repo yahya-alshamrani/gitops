@@ -27,9 +27,7 @@ spec:
     - "sso.yahya-lab.com"
   rules:
     - matches:
-      - path: { type: PathPrefix, value: "/realms" }
-      - path: { type: PathPrefix, value: "/resources" }
-      - path: { type: PathPrefix, value: "/js" }
+      - path: { type: PathPrefix, value: "/" }
       backendRefs:
         - name: keycloak
           port: 8080
