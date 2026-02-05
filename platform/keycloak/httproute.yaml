@@ -27,6 +27,9 @@ spec:
     - "sso.yahya-lab.com"
   rules:
     - matches:
+      - path: { type: PathPrefix, value: "/admin" }
+      backendRefs: []
+    - matches:
       - path: { type: PathPrefix, value: "/" }
       backendRefs:
         - name: keycloak
