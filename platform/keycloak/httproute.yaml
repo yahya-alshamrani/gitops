@@ -27,17 +27,10 @@ spec:
     - "sso.yahya-lab.com"
   rules:
     - matches:
-      - path: { type: PathPrefix, value: "/admin" }
-      filters:
-        - type: RequestRedirect
-          requestRedirect:
-            hostname: "access-blocked"
-            statusCode: 302
-      backendRefs:
-        - name: keycloak
-          port: 8080
-    - matches:
-      - path: { type: PathPrefix, value: "/" }
+      - path: { type: PathPrefix, value: "/realms" }
+      - path: { type: PathPrefix, value: "/resources" }
+      - path: { type: PathPrefix, value: "/js" }
+      - path: { type: PathPrefix, value: "/robots.txt" }
       backendRefs:
         - name: keycloak
           port: 8080
