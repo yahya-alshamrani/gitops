@@ -28,7 +28,13 @@ spec:
   rules:
     - matches:
       - path: { type: PathPrefix, value: "/admin" }
-      backendRefs: []
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            path:
+              type: ReplaceFullPath
+              replaceFullPath: /
+            statusCode: 302
     - matches:
       - path: { type: PathPrefix, value: "/" }
       backendRefs:
