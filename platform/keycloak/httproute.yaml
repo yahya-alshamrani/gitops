@@ -29,12 +29,14 @@ spec:
     - matches:
       - path: { type: PathPrefix, value: "/admin" }
       filters:
-        - type: RequestRedirect
-          requestRedirect:
+        - type: URLRewrite
+          urlRewrite:
             path:
               type: ReplaceFullPath
-              replaceFullPath: /
-            statusCode: 302
+              replaceFullPath: /error/blocked-by-policy
+      backendRefs:
+        - name: keycloak
+          port: 8080
     - matches:
       - path: { type: PathPrefix, value: "/" }
       backendRefs:
